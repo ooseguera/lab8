@@ -203,13 +203,15 @@ Flt bodyShapeIndex(SBSI *sbsi)
 void showData(char *argv)
 {
     for (int i = 0; i < 81; i++) {
-            cout << sbsiArray[i].h << " ";//data[i*5+0] << " ";
-            cout << sbsiArray[i].wc << " ";//data[i*5+1] << " ";
-            cout << sbsiArray[i].bsa << " ";//data[i*5+2] << " ";
-            cout << sbsiArray[i].vtc << "  ";//data[i*5+3] << " ";
-            cout  <<data[i*5+4] << " ";
+            cout << sbsiArray[i].h << " ";
+            cout << sbsiArray[i].wc << " ";
+            cout << sbsiArray[i].bsa << " ";
+            cout << sbsiArray[i].vtc << "  ";
+            cout  <<data[i*5+4] << "   ";
             Flt val = bodyShapeIndex(&sbsiArray[i]);
-            if (val > atof(argv)) {
+            if ((( data[i*5+4] - val) > atof(argv)) ||
+                    ((val - data[i*5+4])> atof(argv))) 
+            {
                 badElementCount++;
                 cout << val << "<--- outside of tolerance\n";
             }
